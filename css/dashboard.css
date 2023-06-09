@@ -1,0 +1,231 @@
+:root{
+  --color-primary:#BC8A5F;
+  --color-primary-light:hsl(242,91%,69%,18%);
+  --color-primary-variant:#D4A276;
+  --color-primary1:#E7BC91;
+  --color-primary2:#BC8A5F;
+  --color-primary3:#A47148;
+  --color-primary4:#7c3e0b;
+  --color-red:#ff0000;
+  --color-red-light:#e7003626;
+  --color-green:#00c476;
+  --color-green-light:#00c27426;
+  --color-dark-gray:#f2f2fe4d;
+  --color-light-gray:#f2f2feb3;
+  --color-white:#ffffff;
+  --color-black:#000000;
+  --color-background-light: #573100;
+  --color-background: #3d2201;
+
+  --transition:all 0.15s ease;
+
+  
+ /*  --color-primary-light:#CAF0F8;
+  --color-primary-dark:#0077B6;
+  --color-secondary:#0096C7;
+  --color-secondary-light:#90E0EF;
+  
+  --color-secondary-optional:#00B4D8;
+  --color-white:#ffffff;
+  --color-black:#000000;*/--color-secondary-dark:#0c013d;
+}
+
+.dashboard{
+  margin-top:8rem;
+}
+
+.dashboard-container{
+  display: grid;
+  background-color: var(--color-background-light);
+  grid-template-columns: 13.5rem 1fr;
+  gap:0.4rem;
+  margin-bottom: 15rem;
+  padding: 2rem;
+}
+
+.dashboard aside a{
+  background-color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  gap:0.575rem;
+  padding:1rem;
+  border-bottom:1px solid var(--color-background);
+  transition: var(--transition);
+}
+.dashboard aside a:hover{
+  background-color: var(--color-primary3);
+  letter-spacing: 0.05rem;
+}
+
+.dashboard aside h5{
+  font-weight: 500;
+}
+
+.dashboard aside a.dashboard-active{
+  background-color: var(--color-primary4);
+  border-bottom: none;
+}
+
+/*? --------------------------- MAIN TABLE OF DASHBOARD ----------------------------  */
+
+.main-table{
+  margin-left: 1.5rem;
+}
+
+.main-table h2{
+  margin:0 0 2rem 0;
+  line-height: 1;
+  text-align: center;
+}
+.main-table table{
+  width: 100%;
+  text-align: left;
+  
+}
+
+.main-table table thead th{
+  padding: 0.6rem 0;
+}
+
+.main-table table tbody td:first-child{
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.main-table table tbody td div{
+  display: flex;
+  justify-content: center;
+}
+
+.main-table table td,
+.main-table table th{
+  max-width: 100%;
+}
+
+.main-table table th{
+  text-align: center;
+  color: var(--color-white);
+  background-color: var(--color-background);
+
+}
+
+.main-table table td{
+  padding: 0.8rem;
+  color: var(--color-white);
+  border-bottom: 1px solid var(--color-primary-variant);
+  transition: var(--transition);
+}
+
+.edit-button,.delete-button{
+  display: inline-block;
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  font-family:'Space Grotesk', sans-serif;
+  padding:0.2rem 1.2rem;
+  border: none;
+  border-radius: 0.2rem;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.edit-button{
+  background-color: var(--color-green);
+  cursor: pointer;
+}
+
+.delete-button{
+  background-color: var(--color-red);
+}
+.main-table table tr:hover{
+    background-color: var(--color-primary-light);
+  }
+
+/*? --------------------------- DASHBOARD SIDEBAR TOGGLE----------------------------  */
+
+/* .dashboard-sidebar-toggle{
+} */
+
+
+/*? --------------------------- MEDIA QUERY OF DASHBOARD ----------------------------  */
+
+@media screen and (max-width:1024px){
+  .dashboard-container{
+    grid-template-columns: 11.25rem 1fr;
+  }
+  .dashboard aside a{
+    font-size: 1rem;
+    gap:0.3rem;
+  }
+  
+}
+
+@media screen and (max-width:840px){
+  .dashboard-container{
+    grid-template-columns: 11rem 1fr;
+  }
+
+  .dashboard aside h5{
+    font-size: 1.2rem;
+  }
+  .main-table{
+    margin: 0;
+  }
+
+
+  .main-table table thead{
+    display: none;
+  }
+
+   .main-table table tr{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .main-table table tbody td div{
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .main-table table tr:nth-child(even){
+    background-color: var(--color-primary-light);
+  }
+  .main-table table tr:nth-child(even):hover{
+    background-color: var(--color-primary-light);
+  }
+
+  /* ?? -------------------------- DASHBOARD ON SMALL SCREENS  ---------------------------- */
+  
+  .dashboard{
+    margin-top: 6rem;
+  }
+
+   .main-table table tr:hover{
+    background-color: var(--color-background);
+  }
+
+  .dashboard-container{
+    grid-template-columns: 1fr;
+    border-radius: 0.5rem;
+    background-color: var(--color-background-light);
+  }
+
+  
+
+  .main-table h2 {
+    margin-top:1rem;
+  }
+/*
+  .dashboard aside{
+    position: fixed;
+    top: 5.2rem;
+    left:0;
+    bottom: 0;
+    background-color: var(--color-primary2);
+    height: 100vh;
+    box-shadow: 2.3rem 0 4rem rgba(0,0,0,0.4);
+    transition: var(--transition);
+  } */
+
+}
