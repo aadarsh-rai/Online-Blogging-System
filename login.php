@@ -1,5 +1,11 @@
 <?php
-  require 'config/constants.php'
+  require 'config/constants.php';
+
+  $username_email = $_SESSION['login-data']['username_email'] ?? null;
+  $password = $_SESSION['login-data']['password'] ?? null;
+  
+  //? deletes signup data session
+  unset($_SESSION['login-data']);
 ?>
 
 <!DOCTYPE html>
@@ -23,18 +29,32 @@
   <main>
     <section class="form-selection">
       <div class="container form-section-container">
-        <h2>Sign Up</h2>
-        <div class="success-message success" >
-          <p>This is an success message</p>
-        </div>
-        <form action="" enctype="multipart/form-data">
-          <input type="text" placeholder="E-mail or Username">
-          <input type="password" placeholder=" Password">
-          <button class="login-submit-button" type="submit" >Login</button>
+        <h2>Login</h2>
+        <?php if (isset($_SESSION['signup-success'])) : ?>
+          <div class="success-message success" >
+            <p>
+              <?= $_SESSION['signup-success'];
+              unset($_SESSION['signup-success']);
+              ?>
+            </p>
+          </div>
+        <?php elseif (isset($_SESSION['login'])) : ?>
+          <div class="alert-message error" >
+            <p>
+              <?= $_SESSION['login'];
+              unset($_SESSION['login']);
+              ?>
+            </p>
+          </div>
+        <?php endif ?>
+        <form action="<?= ROOT_URL ?>login-logic.php" method="POST">
+          <input type="text" name="username_email" value="<?= $username_email ?>" placeholder="E-mail or Username">
+          <input type="password" name="password" value="<?= $password ?>" placeholder=" Password">
+          <button class="login-submit-button" name="submit" type="submit" >Login</button>
           <small>Don't have an account? <a href="signup.php">Sign Up</a></small>
         </form>
       </div>
     </section>
   </main>
-</body>
+</body> 
  </html>

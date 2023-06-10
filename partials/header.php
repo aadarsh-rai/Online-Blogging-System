@@ -2,6 +2,13 @@
 
   require 'config/db.php'; 
 
+  //? fetching current user from the database
+  if(isset($_SESSION['user-id'])){
+    $id = filter_var($_SESSION['user-id'], FILTER_SANITIZE_NUMBER_INT);
+    $query = "SELECT avatar FROM users WHERE id = $id";
+    $result = mysqli_query($connection, $query);
+    $avatar = mysqli_fetch_assoc($result);
+  }
 ?>
 
 <!DOCTYPE html>
@@ -31,16 +38,19 @@
           <li><a href="<?= ROOT_URL ?>about.php">About</a></li>
           <li><a href="<?= ROOT_URL ?>services.php">Services</a></li>
           <li><a href="<?= ROOT_URL ?>contact.php">Contact</a></li>
-          <li><a href="<?= ROOT_URL ?>login.php">login</a></li> 
-          <!-- <li class="navbar-profile">
+          <?php if(isset($_SESSION['user-id'])) : ?>
+            <li class="navbar-profile">
             <div class="avatar">
-              <img src="images/profile-1.jpg" alt="">
+              <img src="<?= ROOT_URL . 'images/' . $avatar['avatar'] ?>">
             </div>
             <ul>
               <li><a href="<?= ROOT_URL ?>admin/index.php">Dashboard</a></li>
-              <li><a  href="login.php">Logout</a></li>
+              <li><a  href="<?= ROOT_URL ?>logout.php">Logout</a></li>
             </ul>
-          </li> -->
+          </li>
+          <?php else : ?>
+          <li><a href="<?= ROOT_URL ?>login.php">login</a></li>
+          <?php endif ?>
         </ul>
 
         <button class="open-navbar-btn"><i class="fa-solid fa-bars"></i></button>

@@ -21,6 +21,9 @@
                 <h5>Manage Post</h5>
               </a>
             </li>
+
+            <?php if(isset($_SESSION['user_is_admin'])) : ?>
+
             <li>
               <a href="add-user.php">
                 <i class="fa-solid fa-user-plus"></i>
@@ -45,6 +48,9 @@
                 <h5>Manage Category</h5>
               </a>
             </li>
+
+            <?php endif ?>
+
           </ul>
         </aside>
         <div class="main-table" >

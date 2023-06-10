@@ -82,7 +82,7 @@
         if(!mysqli_errno($connection)){
           //? redirecting to login page with success message
           $_SESSION['signup-success'] = "Registration Successfull. Now you can login!";
-          header('location:' . ROOT_URL . 'login.php');
+          header('location: ' . ROOT_URL . 'login.php');
           die();
         }
       }

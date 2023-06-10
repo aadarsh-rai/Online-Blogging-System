@@ -1,4 +1,5 @@
 <?php
+session_start();
 define('ROOT_URL', 'http://localhost/blogging/');
 define('DB_HOST' ,'localhost'); //Points to the local server
 define('DB_USER' ,'root'); //User name for connecting the database
