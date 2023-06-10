@@ -1,3 +1,20 @@
+<?php
+  require 'config/constants.php';
+
+  //? getting back the form data if there is a registration error
+  $firstname = $_SESSION['signup-data']['firstname'] ?? null;
+  $lastname = $_SESSION['signup-data']['lastname'] ?? null;
+  $username = $_SESSION['signup-data']['username'] ?? null;
+  $email = $_SESSION['signup-data']['email'] ?? null;
+  $createpassword = $_SESSION['signup-data']['createpassword'] ?? null;
+  $confirmpassword = $_SESSION['signup-data']['confirmpassword'] ?? null;
+
+  //? deletes signup data session
+  unset($_SESSION['signup-data']);
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,21 +37,28 @@
     <section class="form-selection">
       <div class="container form-section-container">
         <h2>Sign Up</h2>
-        <div class="alert-message error" >
-          <p>This is an error message</p>
-        </div>
-        <form action="" enctype="multipart/form-data">
-          <input type="text" placeholder="First Name">
-          <input type="text" placeholder="Last Name">
-          <input type="text" placeholder="Username">
-          <input type="email" placeholder="Email">
-          <input type="password" placeholder="Create password">
-          <input type="password" placeholder="Confirm Password">
+        <?php
+          if(isset($_SESSION['signup'])) : ?>
+            <div class="alert-message error" >
+              <p>
+                <?= $_SESSION['signup'];
+                unset($_SESSION['signup']);
+                ?>
+              </p>
+            </div>
+        <?php endif ?>
+        <form action="<?= ROOT_URL ?>signup-logic.php" enctype="multipart/form-data" method="POST">
+          <input type="text" name="firstname" value="<?= $firstname ?>" placeholder="First Name">
+          <input type="text" name="lastname" value="<?= $lastname ?>"  placeholder="Last Name">
+          <input type="text" name="username" value="<?= $username ?>" placeholder="Username">
+          <input type="email" name="email" value="<?= $email  ?>" placeholder="Email">
+          <input type="password" name="createpassword" value="<?= $createpassword ?>" placeholder="Create password">
+          <input type="password" name="confirmpassword" value="<?= $confirmpassword ?>" placeholder="Confirm Password">
           <div class="form-control" >
             <label for="avatar">Choose your picture</label>
-            <input type="file" id="avatar">
+            <input type="file" name="avatar" id="avatar">
           </div>
-          <button class="signup-submit-button" type="submit" >Sign up</button>
+          <button class="signup-submit-button" name="submit" type="submit" >Sign up</button>
           <small>Already have an account? <a href="login.php">Login</a></small>
         </form>
       </div>
