@@ -79,7 +79,8 @@ textarea::placeholder{
   color: var(--color-white);
 }
 
-input[type="file"]{
+input[type="file"],
+input[type="submit"]{
   cursor:pointer;
 }
 
