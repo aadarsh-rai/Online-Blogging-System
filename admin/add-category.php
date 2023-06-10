@@ -1,6 +1,6 @@
 <?php 
 
-  include'partials/header.php';
+  include 'partials/header.php';
 
 ?> 
 
@@ -24,6 +24,6 @@
 
   <?php
 
-  include'../partials/footer.php'
+  include' ../partials/footer.php'
 
 ?>

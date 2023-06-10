@@ -1,6 +1,6 @@
 <?php 
 
-  include'partials/header.php';
+  include 'partials/header.php';
 
 ?> 
   <!-- ?? -------------------- MAIN SECTION ----------------- -->
@@ -20,6 +20,6 @@
 
   <?php
 
-  include'../partials/footer.php'
+  include '../partials/footer.php'
 
 ?>
