@@ -183,5 +183,6 @@
       <small>Copyright &copy | Username</small>
     </section>
   </footer>
+  <script src="../js/script.js"></script>
 </body>
 </html>
