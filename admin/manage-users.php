@@ -2,10 +2,26 @@
 
   include 'partials/header.php';
 
+  //? fetching/displaying user from database(user table) expect the current user
+  $current_admin_id = $_SESSION['user-id'];
+
+  $query = "SELECT * FROM users WHERE NOT id=$current_admin_id";
+  $users = mysqli_query($connection, $query);
+
 ?> 
 
   <main>
     <section class="dashboard" >
+    <?php if(isset($_SESSION['add-user-success'])) : ?>
+        <div class="success-message success container" >
+          <p>
+            <?= $_SESSION['add-user-success'];
+            unset($_SESSION['add-user-success']);
+            ?>
+          </p>
+        </div>
+      <?php endif ?>
+
       <div class="container dashboard-container">
         <aside>
           <ul>
@@ -67,52 +83,22 @@
             </thead>
             <tbody>
               <tr>
-                <td>Itachi Uchiha</td>
-                <td>Amaterasu</td>
+                <?php while($user = mysqli_fetch_assoc($users)) : ?>
+                <td><?= "{$user['firstname']} {$user['lastname']}" ?></td>
+                <td><?= $user['username'] ?></td>
                 <td>
                   <div>
-                    <a href="edit-user.php" class="edit-button sm" >Edit</a>
+                    <a href="<?= ROOT_URL ?>admin/edit-user.php?id<?= $user['id'] ?>" class="edit-button sm" >Edit</a>
                   </div>
                 </td>
                 <td>
                   <div>
-                    <a href="delete-category.php" class="delete-button sm" >Delete</a>
+                    <a href="<?= ROOT_URL ?>delete-user.php<?= $user['id'] ?>" class="delete-button sm" >Delete</a>
                   </div>
                 </td>
-                <td>Yes</td>
+                <td><?= $user['is_admin'] ? 'Yes' : 'No' ?></td>
               </tr>
-
-              <tr>
-                <td>Itachi Uchiha</td>
-                <td>Amaterasu</td>
-                <td>
-                  <div>
-                    <a href="edit-user.php" class="edit-button sm" >Edit</a>
-                  </div>
-                </td>
-                <td>
-                  <div>
-                    <a href="delete-category.php" class="delete-button sm" >Delete</a>
-                  </div>
-                </td>
-                <td>No</td>
-              </tr>
-
-              <tr>
-                <td>Itachi Uchiha</td>
-                <td>Amaterasu</td>
-                <td>
-                  <div>
-                    <a href="edit-user.php" class="edit-button sm" >Edit</a>
-                  </div>
-                </td>
-                <td>
-                  <div>
-                    <a href="delete-category.php" class="delete-button sm" >Delete</a>
-                  </div>
-                </td>
-                <td>Yes</td>
-              </tr>
+              <?php endwhile ?>
             </tbody>
           </table>
         </div>
@@ -122,6 +108,5 @@
 
   <?php
 
-  include '../partials/footer.php'
-
+  include '../partials/footer.php';
 ?>
