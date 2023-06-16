@@ -32,7 +32,7 @@
       //? Checking if the password do not match each other 
       
       if($createpassword !== $confirmpassword){
-        $_SESSION['signup'] = "Passwords do not match";
+        $_SESSION['add-user'] = "Passwords do not match";
       } else{
         //? it will show hashed/Encrypted password in the database
         $hashed_password = password_hash($createpassword, PASSWORD_DEFAULT);

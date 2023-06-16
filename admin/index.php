@@ -4,52 +4,51 @@
 
 ?> 
 
-  <main>
-    <section class="dashboard" >
-      <div class="container dashboard-container">
-        <aside>
-          <ul>
-            <li>
-              <a href="add-post.php">
-                <i class="fa-solid fa-pencil"></i>
-                <h5>Add Post</h5>
-              </a>
-            </li>
-            <li>
-              <a href="index.php" class="dashboard-active">
-                <i class="fa-solid fa-list-check"></i>
-                <h5>Manage Post</h5>
-              </a>
-            </li>
+<main>
+  <section class="dashboard" >
+    <div class="container dashboard-container">
+      <aside>
+        <ul>
+          <li>
+            <a href="add-post.php">
+              <i class="fa-solid fa-pencil"></i>
+              <h5>Add Post</h5>
+            </a>
+          </li>
+          <li>
+            <a href="index.php" class="dashboard-active">
+              <i class="fa-solid fa-list-check"></i>
+              <h5>Manage Post</h5>
+            </a>
+          </li>
 
-            <?php if(isset($_SESSION['user_is_admin'])) : ?>
+          <?php if(isset($_SESSION['user_is_admin'])) : ?>
+          <li>
+            <a href="add-user.php">
+              <i class="fa-solid fa-user-plus"></i>
+              <h5>Add User</h5>
+            </a>
+          </li>
+          <li>
+            <a href="manage-users.php">
+              <i class="fa-solid fa-users-line"></i>
+              <h5>Manage Users</h5>
+            </a>
+          </li>
+          <li>
+            <a href="add-category.php">
+              <i class="fa-regular fa-pen-to-square"></i>
+              <h5>Add Category</h5>
+            </a>
+          </li>
+          <li>
+            <a href="manage-categories.php" class="active">
+              <i class="fa-solid fa-list"></i>
+              <h5>Manage Category</h5>
+            </a>
+          </li>
 
-            <li>
-              <a href="add-user.php">
-                <i class="fa-solid fa-user-plus"></i>
-                <h5>Add User</h5>
-              </a>
-            </li>
-            <li>
-              <a href="manage-users.php">
-                <i class="fa-solid fa-users-line"></i>
-                <h5>Manage Users</h5>
-              </a>
-            </li>
-            <li>
-              <a href="add-category.php">
-                <i class="fa-regular fa-pen-to-square"></i>
-                <h5>Add Category</h5>
-              </a>
-            </li>
-            <li>
-              <a href="manage-categories.php" class="active">
-                <i class="fa-solid fa-list"></i>
-                <h5>Manage Category</h5>
-              </a>
-            </li>
-
-            <?php endif ?>
+          <?php endif ?>
 
           </ul>
         </aside>
