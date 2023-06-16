@@ -12,7 +12,8 @@
 
   <main>
     <section class="dashboard" >
-    <?php if(isset($_SESSION['add-user-success'])) : ?>
+    
+    <?php if(isset($_SESSION['add-user-success'])) : //?? display the output if adding new user was successfull in the admin dashboard?>
         <div class="success-message success container" >
           <p>
             <?= $_SESSION['add-user-success'];
@@ -20,6 +21,42 @@
             ?>
           </p>
         </div>
+
+      <?php elseif(isset($_SESSION['edit-user-success'])) : //?? display the output if updating the user was successfull in the admin dashboard ?>
+      <div class="success-message success container" >
+        <p>
+          <?= $_SESSION['edit-user-success'];
+          unset($_SESSION['edit-user-success']);
+          ?>
+        </p>
+      </div> 
+      
+      <?php elseif(isset($_SESSION['edit-user-error'])) : //?? display the output if updating the user was NOT successfull in the admin dashboard ?>
+      <div class="alert-message error container" >
+        <p>
+          <?= $_SESSION['edit-user-error'];
+          unset($_SESSION['edit-user-error']);
+          ?>
+        </p>
+      </div>
+
+      <?php elseif(isset($_SESSION['delete-user-success'])) : //?? display the output if deleting the user was successfull in the admin dashboard ?>
+      <div class="success-message success container" >
+        <p>
+          <?= $_SESSION['delete-user-success'];
+          unset($_SESSION['delete-user-success']);
+          ?>
+        </p>
+      </div>  
+
+      <?php elseif(isset($_SESSION['delete-user-error'])) : //?? display the output if deleting the user was NOT successfull in the admin dashboard ?>
+      <div class="alert-message error container" >
+        <p>
+          <?= $_SESSION['delete-user-error'];
+          unset($_SESSION['delete-user-error']);
+          ?>
+        </p>
+      </div>  
       <?php endif ?>
 
       <div class="container dashboard-container">
@@ -84,19 +121,19 @@
             <tbody>
               <tr>
                 <?php while($user = mysqli_fetch_assoc($users)) : ?>
-                <td><?= "{$user['firstname']} {$user['lastname']}" ?></td>
-                <td><?= $user['username'] ?></td>
+                <td><?= "{$user['firstname']} {$user['lastname']}" ?></td> <!-- //? displays the firstname adn lastname in the admin dashboard of manage users -->
+                <td><?= $user['username'] ?></td> <!-- //? displays the username in the admin dashboard of manage users -->
                 <td>
                   <div>
-                    <a href="<?= ROOT_URL ?>admin/edit-user.php?id<?= $user['id'] ?>" class="edit-button sm" >Edit</a>
+                    <a href="<?= ROOT_URL ?>admin/edit-user.php?id=<?= $user['id'] ?>" class="edit-button sm" >Edit</a>
                   </div>
                 </td>
                 <td>
                   <div>
-                    <a href="<?= ROOT_URL ?>delete-user.php<?= $user['id'] ?>" class="delete-button sm" >Delete</a>
+                    <a href="<?= ROOT_URL ?>admin/delete-user.php?id=<?= $user['id'] ?>" class="delete-button sm" >Delete</a>
                   </div>
                 </td>
-                <td><?= $user['is_admin'] ? 'Yes' : 'No' ?></td>
+                <td><?= $user['is_admin'] ? 'Yes' : 'No' ?></td> <!-- //? check if the user is admin or not -->
               </tr>
               <?php endwhile ?>
             </tbody>
