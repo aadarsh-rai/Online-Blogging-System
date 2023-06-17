@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 17, 2023 at 05:40 AM
+-- Generation Time: Jun 17, 2023 at 04:59 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -32,6 +32,19 @@ CREATE TABLE `categories` (
   `title` varchar(50) NOT NULL,
   `description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `title`, `description`) VALUES
+(2, 'Travel', 'This is a travel category'),
+(3, 'Anime', 'This is a  anime category'),
+(4, 'Science &amp; Technology', 'This is a science &amp; technology category'),
+(5, 'Wildlife', 'This is a wildlife category'),
+(6, 'Food ', 'This is a food category'),
+(7, 'Uncategorized', 'This is an uncategorized category'),
+(8, 'Food ', 'This is a food category');
 
 -- --------------------------------------------------------
 
@@ -83,7 +96,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`

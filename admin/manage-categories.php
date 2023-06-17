@@ -2,10 +2,60 @@
 
   include 'partials/header.php';
 
+  //?displaying the categories from the database to the admin dashboard
+  $query = "SELECT * FROM categories ORDER BY title";
+  $categories = mysqli_query($connection,$query);
+  
 ?> 
 
   <main>
     <section class="dashboard" >
+    <?php if(isset($_SESSION['add-category-success'])) : //?? display the output if adding the category was successfull in the admin dashboard ?>
+      <div class="success-message success container" >
+        <p>
+          <?= $_SESSION['add-category-success'];
+          unset($_SESSION['add-category-success']);
+          ?>
+        </p>
+      </div>  
+
+      <?php elseif(isset($_SESSION['add-category-error'])) : //?? display the output if adding the category was NOT successfull in the admin dashboard ?>
+      <div class="alert-message error container" >
+        <p>
+          <?= $_SESSION['add-category-error'];
+          unset($_SESSION['add-category-error']);
+          ?>
+        </p>
+      </div>
+
+      <?php elseif(isset($_SESSION['edit-category-success'])) : //?? display the output if updating the category was successfull in the admin dashboard ?>
+      <div class="success-message success container" >
+        <p>
+          <?= $_SESSION['edit-category-success'];
+          unset($_SESSION['edit-category-success']);
+          ?>
+        </p>
+      </div>
+
+      <?php elseif(isset($_SESSION['edit-category-error'])) : //?? display the output if updating the category was NOT successfull in the admin dashboard ?>
+      <div class="alert-message error container" >
+        <p>
+          <?= $_SESSION['edit-category-error'];
+          unset($_SESSION['edit-category-error']);
+          ?>
+        </p>
+      </div>
+
+      <?php elseif(isset($_SESSION['delete-category-success'])) : //?? display the output if deleting the category was successfull in the admin dashboard ?>
+      <div class="success-message success container" >
+        <p>
+          <?= $_SESSION['delete-category-success'];
+          unset($_SESSION['delete-category-success']);
+          ?>
+        </p>
+      </div>
+      
+      <?php endif ?>
       <div class="container dashboard-container">
         <aside>
           <ul>
@@ -55,58 +105,38 @@
         </aside>
         <div class="main-table" >
           <h2>Manage Categories</h2>
+          <?php if(mysqli_num_rows($categories) > 0) : ?>
           <table>
             <thead>
               <tr>
-                <th>Title</th>
-                <th>Edit</th>
+                <th>Travel</th>
+                <th>Edit</a></th>
                 <th>Delete</th>
               </tr>
             </thead>
             <tbody>
+              <?php while($category = mysqli_fetch_assoc($categories)) : ?>
               <tr>
-                <td>Travel</td>
+                <td><?= $category['title'] ?></td>
                 <td>
                   <div>
-                    <a href="edit-category.php" class="edit-button sm" >Edit</a>
+                    <a href="<?= ROOT_URL ?>admin/edit-category.php?id=<?= $category['id']?>" class="edit-button sm" >Edit</a>
                   </div>
                 </td>
                 <td>
                   <div>
-                    <a href="delete-category.php" class="delete-button sm" >Delete</a>
+                    <a href="<?= ROOT_URL ?>admin/delete-category.php?id=<?= $category['id']?>" class="delete-button sm" >Delete</a>
                   </div>
                 </td>
               </tr>
-
-              <tr>
-                <td>wild Life</td>
-                <td>
-                  <div>
-                    <a href="edit-category.php" class="edit-button sm" >Edit</a>
-                  </div>
-                </td>
-                <td>
-                  <div>
-                    <a href="delete-category.php" class="delete-button sm" >Delete</a>
-                  </div>
-                </td>
-              </tr>
-    
-              <tr>
-                <td>Science % Technology</td>
-                <td>
-                  <div>
-                    <a href="edit-category.php" class="edit-button sm" >Edit</a>
-                  </div>
-                </td>
-                <td>
-                  <div>
-                    <a href="delete-category.php" class="delete-button sm" >Delete</a>
-                  </div>
-                </td>
-              </tr>
+              <?php endwhile ?>
             </tbody>
           </table>
+          <?php else : ?>
+            <div class="alert-message error">
+              <?= "No categories are found" ?>
+            </div>
+          <?php endif ?>
         </div>
       </div>
     </section>

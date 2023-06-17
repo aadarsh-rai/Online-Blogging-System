@@ -56,7 +56,7 @@
             $extention = end($extention);
               if(in_array($extention, $allowed_files)){
                 //? making sure that the image is not too large than 2MB
-                if($avatar['size'] < 1000000){
+                if($avatar['size'] < 2000000){
                 //? upload the avatar
                 move_uploaded_file($avatar_tmp_name, $avatar_destination_path);
                 }else{

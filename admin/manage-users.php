@@ -56,7 +56,26 @@
           unset($_SESSION['delete-user-error']);
           ?>
         </p>
+      </div>
+      
+      <?php elseif(isset($_SESSION['add-category-success'])) : //?? display the output if deleting the user was successfull in the admin dashboard ?>
+      <div class="success-message success container" >
+        <p>
+          <?= $_SESSION['add-category-success'];
+          unset($_SESSION['add-category-success']);
+          ?>
+        </p>
       </div>  
+
+      <?php elseif(isset($_SESSION['add-category-error'])) : //?? display the output if deleting the user was NOT successfull in the admin dashboard ?>
+      <div class="alert-message error container" >
+        <p>
+          <?= $_SESSION['add-category-error'];
+          unset($_SESSION['add-category-error']);
+          ?>
+        </p>
+      </div>
+      
       <?php endif ?>
 
       <div class="container dashboard-container">
@@ -108,6 +127,7 @@
         </aside>
         <div class="main-table" >
           <h2>Manage Users</h2>
+          <?php if(mysqli_num_rows($users) > 0) : ?>
           <table>
             <thead>
               <tr>
@@ -138,6 +158,11 @@
               <?php endwhile ?>
             </tbody>
           </table>
+          <?php else : ?>
+            <div class="alert-message error">
+              <?= "No users are found" ?>
+            </div>
+          <?php endif ?>
         </div>
       </div>
     </section>

@@ -185,12 +185,12 @@
 
     <section class="categories-buttons">
       <div class="container categories-buttons-container">
-        <a class="category-button" href="">Art % Lifestyle</a>
-        <a class="category-button" href="">Travel & Tourism</a>
-        <a class="category-button" href="">Anime & Manga</a>
+        <a class="category-button" href="">Gaming</a>
+        <a class="category-button" href="">Travel</a>
+        <a class="category-button" href="">Anime</a>
         <a class="category-button" href="">Science & Technology</a>
-        <a class="category-button" href="">Wild-Life</a>
-        <a class="category-button" href="">Food & Drinks</a>
+        <a class="category-button" href="">Wildlife</a>
+        <a class="category-button" href="">Food</a>
       </div>
     </section>
   </main>
