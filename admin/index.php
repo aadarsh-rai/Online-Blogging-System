@@ -2,10 +2,48 @@
 
   include 'partials/header.php';
 
+  //? fetching the current user's post from the database 
+  $current_user_id = $_SESSION['user-id'];
+  $query = "SELECT id, title, category_id FROM posts WHERE author_id = $current_user_id ORDER BY id DESC";
+  $posts =  mysqli_query($connection,$query);
+
 ?> 
 
 <main>
-  <section class="dashboard" >
+  <section class="dashboard">
+    <?php if(isset($_SESSION['add-post-success'])) : //?? display the output if adding the post was successfull in the admin dashboard ?>
+      <div class="success-message success container" >
+        <p>
+          <?= $_SESSION['add-post-success'];
+          unset($_SESSION['add-post-success']);
+          ?>
+        </p>
+      </div>
+    <?php elseif(isset($_SESSION['edit-post-success'])) : //?? display the output if editing the post was successfull in the admin dashboard ?>
+      <div class="success-message success container" >
+        <p>
+          <?= $_SESSION['edit-post-success'];
+          unset($_SESSION['edit-post-success']);
+          ?>
+        </p>
+      </div>
+    <?php elseif(isset($_SESSION['edit-post'])) : //?? display the output if editing the post was NOT successfull in the admin dashboard ?>
+      <div class="success-message error container" >
+        <p>
+          <?= $_SESSION['edit-post'];
+          unset($_SESSION['edit-post']);
+          ?>
+        </p>
+      </div>
+      <?php elseif(isset($_SESSION['delete-post-success'])) : //?? display the output if delete the post was  successfull in the admin dashboard ?>
+      <div class="success-message error container" >
+        <p>
+          <?= $_SESSION['delete-post-success'];
+          unset($_SESSION['delete-post-success']);
+          ?>
+        </p>
+      </div>
+    <?php endif ?> 
     <div class="container dashboard-container">
       <aside>
         <ul>
@@ -54,6 +92,7 @@
         </aside>
         <div class="main-table" >
           <h2>Manage Users</h2>
+          <?php if(mysqli_num_rows($posts) > 0) : ?> 
           <table>
             <thead>
               <tr>
@@ -64,67 +103,36 @@
               </tr>
             </thead>
             <tbody>
+              <?php while($post = mysqli_fetch_assoc($posts)) : ?>
+                <!--//? getting category title of each post from categories table -->
+                <?php
+                  $category_id = $post['category_id'];
+                  $category_query = "SELECT title FROM categories WHERE id=$category_id";
+                  $category_result = mysqli_query($connection, $category_query);
+                  $category = mysqli_fetch_assoc($category_result);
+                ?>
               <tr>
-                <td>How does an owl fly slienty?</td>
-                <td>Wild-life</td>
+                <td><?= $post['title'] ?></td>
+                <td><?= $category['title'] ?></td>
                 <td>
                   <div>
-                    <a href="edit-post.php" class="edit-button sm" >Edit</a>
+                    <a href="<?= ROOT_URL ?>admin/edit-post.php?id=<?= $post['id'] ?>" class="edit-button sm" >Edit</a>
                   </div>
                 </td>
                 <td>
                   <div>
-                    <a href="delete-category.php" class="delete-button sm" >Delete</a>
+                    <a href="<?= ROOT_URL ?>admin/delete-post.php?id=<?= $post['id'] ?>" class="delete-button sm" >Delete</a>
                   </div>
                 </td>
-              </tr>
-
-              <tr>
-                <td>How does an owl fly slienty?</td>
-                <td>Wild-life</td>
-                <td>
-                  <div>
-                    <a href="edit-post.php" class="edit-button sm" >Edit</a>
-                  </div>
-                </td>
-                <td>
-                  <div>
-                    <a href="delete-category.php" class="delete-button sm" >Delete</a>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>How does an owl fly slienty?</td>
-                <td>Wild-life</td>
-                <td>
-                  <div>
-                    <a href="edit-post.php" class="edit-button sm" >Edit</a>
-                  </div>
-                </td>
-                <td>
-                  <div>
-                    <a href="delete-category.php" class="delete-button sm" >Delete</a>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>How does an owl fly slienty?</td>
-                <td>Wild-life</td>
-                <td>
-                  <div>
-                    <a href="edit-post.php" class="edit-button sm" >Edit</a>
-                  </div>
-                </td>
-                <td>
-                  <div>
-                    <a href="delete-category.php" class="delete-button sm" >Delete</a>
-                  </div>
-                </td>
-              </tr>
+              </tr> 
+              <?php endwhile ?>             
             </tbody>
           </table>
+          <?php else : ?>
+            <div class="alert-message error">
+              <?= "No posts are found" ?>
+            </div>
+          <?php endif ?>  
         </div>
       </div>
     </section>

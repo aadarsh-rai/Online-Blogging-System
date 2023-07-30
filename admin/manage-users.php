@@ -128,6 +128,7 @@
         <div class="main-table" >
           <h2>Manage Users</h2>
           <?php if(mysqli_num_rows($users) > 0) : ?>
+            
           <table>
             <thead>
               <tr>
