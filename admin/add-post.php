@@ -12,7 +12,7 @@
 
   //? deleting the form data session
   unset($_SESSION['add-post-data']);
-
+ 
 ?> 
 
   <!-- ?? -------------------- MAIN SECTION ----------------- -->
@@ -40,7 +40,7 @@
           <textarea rows="5" name="body" placeholder="Body"><?= $body ?>"</textarea>
           <?php if(isset($_SESSION['user_is_admin'])): ?>
             <div class="form_control inline">
-              <input type="checkbox" name="is_featured" id="is_featured"  value="1" checked>
+              <input type="checkbox" name="is_featured" value="1" id="is_featured" checked>
               <label for="is_featured">Featured</label>
             </div>
           <?php endif ?>
@@ -48,7 +48,7 @@
             <label for="thumbnail">Add Thumbnail</label>
             <input type="file" name="thumbnail" id="thumbnail">
           </div>
-          <button type="submit" class="add-post-submit-button" name="submit" >Add Post</button>
+          <button type="submit" name="submit" class="add-post-submit-button"  >Add Post</button>
         </form>
       </div>
     </section>

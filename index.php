@@ -2,15 +2,20 @@
 
   include 'partials/header.php';
 
+ /*  //? fetching the featured post from the database
+  $featured_query = "SELECT * FROM posts WHERE is_featured=1";
+  $featured_result = mysqli_query($connection,$query);
+  $featured = mysqli_fetch_assoc($featured_result); */
 ?> 
 
 <main>
-  <!-- ?? -------------------- FEATURED POST SECTION ----------------- -->
+  <!-- //?? -------------------- FEATURED POST SECTION ----------------- -->
 
- <section class="featured-post">
+  
+  <section class="featured-post">
     <div class="container featured-container">
       <div class="post-thumbnail">
-        <img src="images/profile-2.jpg" alt="">
+        <img src="images/" alt="">
       </div>
       <div class="post-info">
         <a class="category-button"  href="category-post.php">Wild life</a>
@@ -30,7 +35,7 @@
       </div>
     </div>
   </section>
-
+  
     <!-- ?? -------------------- MINI POST SECTION ----------------- -->
 
   <section class="posts">

@@ -44,16 +44,15 @@
            $_SESSION['add-post'] = 'File size is too big. It should be less than 2mb';
         }
       }else{
-        $_SESSION['add-post'] = 'File should be in png, jpg, or  jpeg';
+        $_SESSION['add-post'] = 'File should be in png, jpg, or  jpeg format';
       }
     }
-    //!ERROR FROM HERE --------------------------------------------------
+
     //? redirecting back to add-post page if there is any problem
     if(isset($_SESSION['add-post'])){
       $_SESSION['add-post-data'] = $_POST;
       header('location: ' . ROOT_URL . 'admin/add-post.php');
       die();
-      //!ERROR FROM HERE
     }else{
       //? set is_featured of all posts to 0 if it is_featured for this post is 1
       if($is_featured == 1){

@@ -20,10 +20,10 @@
     }
     //!FOR LATER
     //?fetching all thumbnails of user's post and delete them
-    $thumbnails_query = "SELECT thumbnail FROM posts WHERE auhtor_id=$id";
-    $thimbnails_result = mysqli_query($connection, $thumbnails_query);
+    $thumbnails_query = "SELECT thumbnail FROM posts WHERE author_id=$id";
+    $thumbnails_result = mysqli_query($connection, $thumbnails_query);
     if(mysqli_num_rows($thumbnails_result) > 0){
-      while($thumbnails = mysqli_fetch_assoc($thumbnails_result)){
+      while($thumbnail = mysqli_fetch_assoc($thumbnails_result)){
         $thumbnail_path = '../images/' . $thumbnail['thumbnail'];
         
         //?deleting the thumbnail from the images folder

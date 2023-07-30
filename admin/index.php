@@ -4,7 +4,7 @@
 
   //? fetching the current user's post from the database 
   $current_user_id = $_SESSION['user-id'];
-  $query = "SELECT id, title, category_id FROM posts WHERE author_id = $current_user_id ORDER BY id DESC";
+  $query = "SELECT id, title, category_id FROM posts WHERE author_id=$current_user_id ORDER BY id DESC";
   $posts =  mysqli_query($connection,$query);
 
 ?> 
@@ -28,7 +28,7 @@
         </p>
       </div>
     <?php elseif(isset($_SESSION['edit-post'])) : //?? display the output if editing the post was NOT successfull in the admin dashboard ?>
-      <div class="success-message error container" >
+      <div class="alert-message error container" >
         <p>
           <?= $_SESSION['edit-post'];
           unset($_SESSION['edit-post']);
@@ -36,7 +36,7 @@
         </p>
       </div>
       <?php elseif(isset($_SESSION['delete-post-success'])) : //?? display the output if delete the post was  successfull in the admin dashboard ?>
-      <div class="success-message error container" >
+      <div class="success-message success container" >
         <p>
           <?= $_SESSION['delete-post-success'];
           unset($_SESSION['delete-post-success']);
@@ -114,16 +114,8 @@
               <tr>
                 <td><?= $post['title'] ?></td>
                 <td><?= $category['title'] ?></td>
-                <td>
-                  <div>
-                    <a href="<?= ROOT_URL ?>admin/edit-post.php?id=<?= $post['id'] ?>" class="edit-button sm" >Edit</a>
-                  </div>
-                </td>
-                <td>
-                  <div>
-                    <a href="<?= ROOT_URL ?>admin/delete-post.php?id=<?= $post['id'] ?>" class="delete-button sm" >Delete</a>
-                  </div>
-                </td>
+                <td><a href="<?= ROOT_URL ?>admin/edit-post.php?id=<?= $post['id'] ?>" class="edit-button sm" >Edit</a></td>
+                <td><a href="<?= ROOT_URL ?>admin/delete-post.php?id=<?= $post['id'] ?>" class="delete-button sm" >Delete</a></td>
               </tr> 
               <?php endwhile ?>             
             </tbody>
