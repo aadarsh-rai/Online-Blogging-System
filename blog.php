@@ -2,6 +2,10 @@
 
   include 'partials/header.php';
 
+  //? fetching al post from the post table;
+  $query = "SELECT * FROM posts ORDER BY date_time DESC";
+  $posts = mysqli_query($connection, $query);
+
 ?>
 
   <main>
@@ -18,172 +22,70 @@
     </section>
 
 
-    <!-- ?? -------------------- MINI POST SECTION ----------------- -->
-
-    <section class="posts">
-      <div class="container posts-container">
+    <!-- //?? -------------------- MINI POST SECTION ----------------- -->
+    <section class="posts <?= $featured ? '' : 'section-extra-margin'?>"> <!-- //*if there is not featured post displayed in the index/main page -->
+    <div class="container posts-container">
+      <?php while($post = mysqli_fetch_assoc($posts)) : ?>
         <article class="post" >
           <div class="post-thumbnail">
-            <img src="images/blog-3.jpg" alt="">
+            <img src="images/<?= $post['thumbnail'] ?>" alt="">
           </div>
           <div class="post-info">
-            <a class="category-button" href="category-post.php">Wild life</a>
+          <?php
+            //?fetching category from the vategories table using category_id of the post table
+            $category_id = $post['category_id'];
+            $category_query = "SELECT * FROM categories WHERE id=$category_id";
+            $category_result = mysqli_query($connection, $category_query);
+            $category = mysqli_fetch_assoc($category_result);
+          ?>
+            <a class="category-button" href="<?= ROOT_URL ?>category-post.php?id=<?= $post['category_id'] ?>"><?= $category['title']?></a>
             <h3 class="post-title">
-              <a href="post.php">Lorem ipsum dolor sit amet consectetur.</a>
+              <a href="<?=  ROOT_URL ?>post.php?id=<?= $post['id'] ?>"><?= $post['title'] ?></a>
             </h3>
             <p class="post-body">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam dignissimos adipisci velit error. Asperiores, repellendus.
+            <?= substr($post['body'], 0 ,200) ?>...
             </p>
             <div class="post-author">
+              <?php
+                //? Fetching the authour from the users table using author_id
+                $author_id = $post['author_id'];
+                $author_query = "SELECT * FROM users WHERE id=$author_id";
+                $author_result = mysqli_query($connection, $author_query);
+                $author = mysqli_fetch_assoc($author_result);
+              ?>
               <div class="post-author-avatar">
-                <img src="images/porifle-3.jpg" alt="">
+                <img src="images/<?= $author['avatar'] ?>" alt="">
               </div>
               <div class="post-author-info">
-                <h5>By: Mr.Froggy</h5>
-                <small>September 21, 2022</small>
+                <h5>By: By: <?= "{$author['firstname']} {$author['lastname']}"?></h5>
+                <small><?= date("M d, Y - H:i", strtotime($post['date_time'])) ?></small>
               </div>
             </div>
           </div>
-        </article>
+        </article>  
+      <?php endwhile ?>      
+    </div>
+  </section>
+    
 
-        <article class="post" >
-          <div class="post-thumbnail">
-            <img src="images/blog-3.jpg" alt="">
-          </div>
-          <div class="post-info">
-            <a class="category-button" href="category-post.php">Wild life</a>
-            <h3 class="post-title">
-              <a href="post.php">Lorem ipsum dolor sit amet consectetur.</a>
-            </h3>
-            <p class="post-body">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam dignissimos adipisci velit error. Asperiores, repellendus.
-            </p>
-            <div class="post-author">
-              <div class="post-author-avatar">
-                <img src="images/porifle-3.jpg" alt="">
-              </div>
-              <div class="post-author-info">
-                <h5>By: Mr.Froggy</h5>
-                <small>September 21, 2022</small>
-              </div>
-            </div>
-          </div>
-        </article>
+  <!-- //?? -------------------- CATEGORIES SECTION ----------------- -->
+  <section class="categories-buttons">
+    <div class="container categories-buttons-container">
+    <?php
+      $all_categories_query = "SELECT * FROM categories";
+      $all_categories = mysqli_query($connection,$all_categories_query);
+    ?>
+    <?php while($category = mysqli_fetch_assoc($all_categories)) : ?>
+      <a class="category-button" href="<?= ROOT_URL ?>category-post.php?id=<?= $category['id'] ?>"><?= $category['title'] ?></a>
+    <?php endwhile ?>
+    </div>
+  </section>
+</main>
 
-        <article class="post" >
-          <div class="post-thumbnail">
-            <img src="images/blog-2.jpg" alt="">
-          </div>
-          <div class="post-info">
-            <a class="category-button" href="category-post.php">Wild life</a>
-            <h3 class="post-title">
-              <a href="post.php">Lorem ipsum dolor sit amet consectetur.</a>
-            </h3>
-            <p class="post-body">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam dignissimos adipisci velit error. Asperiores, repellendus.
-            </p>
-            <div class="post-author">
-              <div class="post-author-avatar">
-                <img src="images/porifle-3.jpg" alt="">
-              </div>
-              <div class="post-author-info">
-                <h5>By: Mr.Froggy</h5>
-                <small>September 21, 2022</small>
-              </div>
-            </div>
-          </div>
-        </article>
 
-        <article class="post" >
-          <div class="post-thumbnail">
-            <img src="images/blog-4.jpg" alt="">
-          </div>
-          <div class="post-info">
-            <a class="category-button" href="category-post.php">Wild life</a>
-            <h3 class="post-title">
-              <a href="post.php">Lorem ipsum dolor sit amet consectetur.</a>
-            </h3>
-            <p class="post-body">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam dignissimos adipisci velit error. Asperiores, repellendus.
-            </p>
-            <div class="post-author">
-              <div class="post-author-avatar">
-                <img src="images/porifle-3.jpg" alt="">
-              </div>
-              <div class="post-author-info">
-                <h5>By: Mr.Froggy</h5>
-                <small>September 21, 2022</small>
-              </div>
-            </div>
-          </div>
-        </article>
 
-        <article class="post" >
-          <div class="post-thumbnail">
-            <img src="images/blog-1.jpg" alt="">
-          </div>
-          <div class="post-info">
-            <a class="category-button" href="category-post.php">Wild life</a>
-            <h3 class="post-title">
-              <a href="post.php">Lorem ipsum dolor sit amet consectetur.</a>
-            </h3>
-            <p class="post-body">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam dignissimos adipisci velit error. Asperiores, repellendus.
-            </p>
-            <div class="post-author">
-              <div class="post-author-avatar">
-                <img src="images/porifle-3.jpg" alt="">
-              </div>
-              <div class="post-author-info">
-                <h5>By: Mr.Froggy</h5>
-                <small>September 21, 2022</small>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <article class="post" >
-          <div class="post-thumbnail">
-            <img src="images/blog-3.jpg" alt="">
-          </div>
-          <div class="post-info">
-            <a class="category-button" href="category-post.php">Wild life</a>
-            <h3 class="post-title">
-              <a href="post.php">Lorem ipsum dolor sit amet consectetur.</a>
-            </h3>
-            <p class="post-body">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam dignissimos adipisci velit error. Asperiores, repellendus.
-            </p>
-            <div class="post-author">
-              <div class="post-author-avatar">
-                <img src="images/porifle-3.jpg" alt="">
-              </div>
-              <div class="post-author-info">
-                <h5>By: Mr.Froggy</h5>
-                <small>September 21, 2022</small>
-              </div>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- ?? -------------------- CATEGORIES SECTION ----------------- -->
-
-    <section class="categories-buttons">
-      <div class="container categories-buttons-container">
-        <a class="category-button" href="">Art % Lifestyle</a>
-        <a class="category-button" href="">Travel & Tourism</a>
-        <a class="category-button" href="">Anime & Manga</a>
-        <a class="category-button" href="">Science & Technology</a>
-        <a class="category-button" href="">Wild-Life</a>
-        <a class="category-button" href="">Food & Drinks</a>
-      </div>
-    </section>
-  </main>
-
-  <?php
-
-include 'partials/footer.php';
+<?php
+  
+  include 'partials/footer.php';
 
 ?> 

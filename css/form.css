@@ -1,147 +1,147 @@
-:root{
-  --color-primary:#BC8A5F;
-  --color-primary-light:hsl(242,91%,69%,18%);
-  --color-primary-variant:#D4A276;
-  --color-primary1:#E7BC91;
-  --color-primary2:#BC8A5F;
-  --color-primary3:#A47148;
-  --color-red:#ff0000;
-  --color-red-light:#e7003626;
-  --color-green:#00c476;
-  --color-green-light:#00c27426;
-  --color-dark-gray:#f2f2fe4d;
-  --color-light-gray:#f2f2feb3;
-  --color-white:#ffffff;
-  --color-black:#000000;
-  --color-background-light: #573100;
-  --color-background: #3d2201;
+:root {
+	--color-primary: #bc8a5f;
+	--color-primary-light: hsl(242, 91%, 69%, 18%);
+	--color-primary-variant: #d4a276;
+	--color-primary1: #e7bc91;
+	--color-primary2: #bc8a5f;
+	--color-primary3: #a47148;
+	--color-red: #ff0000;
+	--color-red-light: #e7003626;
+	--color-green: #00c476;
+	--color-green-light: #00c27426;
+	--color-dark-gray: #f2f2fe4d;
+	--color-light-gray: #f2f2feb3;
+	--color-white: #ffffff;
+	--color-black: #000000;
+	--color-background-light: #573100;
+	--color-background: #3d2201;
 
-  --transition:all 0.15s ease;
+	--transition: all 0.15s ease;
 
-  
- /*  --color-primary-light:#CAF0F8;
+	/*  --color-primary-light:#CAF0F8;
   --color-primary-dark:#0077B6;
   --color-secondary:#0096C7;
   --color-secondary-light:#90E0EF;
   
   --color-secondary-optional:#00B4D8;
   --color-white:#ffffff;
-  --color-black:#000000;*/--color-secondary-dark:#0c013d;
+  --color-black:#000000;*/
+	--color-secondary-dark: #0c013d;
 }
 
 /* ??---------------------------- SIGNUP FORM ----------------------------------- */
 
-.form-selection{
-  display: grid;
-  place-items: center;
-  height: 100vh;
+.form-selection {
+	display: grid;
+	place-items: center;
+	height: 100vh;
 }
 
-.form-section-container{
-  width: 30%;
+.form-section-container {
+	width: 30%;
 }
-.form-section-container >h2{
-  text-align: center;
-  font-size: 2.4rem;
-}
-
-.alert-message,.success-message{
-  padding: 0.8rem 1.4rem;
-  margin-bottom: 1rem;
-  border-radius: 0.2rem;
-  text-align: center;
+.form-section-container > h2 {
+	text-align: center;
+	font-size: 2.4rem;
 }
 
-.alert-message.error{
-  background-color: var(--color-red-light);
-  color: var(--color-red);
+.alert-message,
+.success-message {
+	padding: 0.8rem 1.4rem;
+	margin-bottom: 1rem;
+	border-radius: 0.2rem;
+	text-align: center;
 }
 
-form,.form-control{
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+.alert-message.error {
+	background-color: var(--color-red-light);
+	color: var(--color-red);
 }
 
-input, textarea, select{
-  padding:0.8rem 0.8rem;
-  border-radius: 0.2rem;
-  border: 0px;
-  background-color: var(--color-dark-gray);
-  color: var(--color-white);
-}
-edit-button
-
-input::placeholder,
-textarea::placeholder{
-  font-family:'Space Grotesk', sans-serif;
-  font-size: 1.35;
-  color: var(--color-white);
+form,
+.form-control {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
 }
 
-input[type="file"],
-input[type="submit"]{
-  cursor:pointer;
+input,
+textarea,
+select {
+	padding: 0.8rem 0.8rem;
+	border-radius: 0.2rem;
+	border: 0px;
+	background-color: var(--color-dark-gray);
+	color: var(--color-white);
+}
+edit-button input::placeholder,
+textarea::placeholder {
+	font-family: 'Space Grotesk', sans-serif;
+	font-size: 1.35;
+	color: var(--color-white);
+}
+
+input[type='file'],
+input[type='submit'] {
+	cursor: pointer;
 }
 
 .signup-submit-button,
 .login-submit-button,
 .add-category-submit-button,
 .add-post-submit-button,
-.add-user-submit-button{
-  display: inline-block;
-  font-size: 1.4rem;
-  font-family:'Space Grotesk', sans-serif;
-  width:100%;
-  padding:0.6rem 1.2rem;
-  border: none;
-  color: var(--color-white);
-  background-color: var(--color-primary3);
-  border-radius: 0.2rem;
-  transition: var(--transition);
+.add-user-submit-button {
+	display: inline-block;
+	font-size: 1.4rem;
+	font-family: 'Space Grotesk', sans-serif;
+	width: 100%;
+	padding: 0.6rem 1.2rem;
+	border: none;
+	color: var(--color-white);
+	background-color: var(--color-primary3);
+	border-radius: 0.2rem;
+	transition: var(--transition);
 }
 
-.form-selection small{
-  display: block;
-  width: 100%;
-  padding-bottom: 1rem;
-  text-align: center;
+.form-selection small {
+	display: block;
+	width: 100%;
+	padding-bottom: 1rem;
+	text-align: center;
 }
 
-.form-selection small a{
-  font-size: 1rem;
-  font-weight: 700;
+.form-selection small a {
+	font-size: 1rem;
+	font-weight: 700;
 }
 
-
-@media screen and (max-width:1240px){
-  .form-section-container{
-    width: 40%;
-  }
+@media screen and (max-width: 1240px) {
+	.form-section-container {
+		width: 40%;
+	}
 }
 
-@media screen and (max-width:760px){
-  .form-section-container{
-    width: 50%;
-  }
+@media screen and (max-width: 760px) {
+	.form-section-container {
+		width: 50%;
+	}
 }
 
-@media screen and (max-width:575px){
-  .form-section-container{
-    width: 60%;
-  }
+@media screen and (max-width: 575px) {
+	.form-section-container {
+		width: 60%;
+	}
 }
 
-@media screen and (max-width:425px){
-  .form-section-container{
-    width: 80%;
-  }
+@media screen and (max-width: 425px) {
+	.form-section-container {
+		width: 80%;
+	}
 }
-
 
 /* ??---------------------------- LOGIN FORM ----------------------------------- */
 
-.success-message.success{
-  background-color: var(--color-green-light);
-  color: var(--color-green);
+.success-message.success {
+	background-color: var(--color-green-light);
+	color: var(--color-green);
 }

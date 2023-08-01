@@ -57,7 +57,7 @@
   <?php endif ?>
     <!-- //?? -------------------- MINI POST SECTION ----------------- -->
 
-  <section class="posts">
+  <section class="posts <?= $featured ? '' : 'section-extra-margin'?>"> <!-- //*if there is not featured post displayed in the index/main page -->
     <div class="container posts-container">
       <?php while($post = mysqli_fetch_assoc($posts)) : ?>
         <article class="post" >
@@ -72,9 +72,9 @@
             $category_result = mysqli_query($connection, $category_query);
             $category = mysqli_fetch_assoc($category_result);
           ?>
-            <a class="category-button" href="<?= ROOT_URL ?>category-post.php?id="<?= $post['category_id'] ?>><?= $category['title']?></a>
+            <a class="category-button" href="<?= ROOT_URL ?>category-post.php?id=<?= $post['category_id'] ?>"><?= $category['title']?></a>
             <h3 class="post-title">
-              <a href="post.php"><?= $post['title'] ?></a>
+              <a href="<?=  ROOT_URL ?>post.php?id=<?= $post['id'] ?>"><?= $post['title'] ?></a>
             </h3>
             <p class="post-body">
             <?= substr($post['body'], 0 ,200) ?>...
