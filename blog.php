@@ -9,21 +9,9 @@
 ?>
 
   <main>
-    <!-- ?? -------------------- SEARCH BAR SECTION ----------------- -->
-
-    <section class="search-bar">
-      <form class="container search-bar-container" action="">
-        <div>
-          <i class="fa-solid fa-magnifying-glass"></i>
-          <input type="search" name="" placeholder="Search">
-        </div>
-        <button class="submit-btn" type="submit">Submit</button>
-      </form>
-    </section>
-
 
     <!-- //?? -------------------- MINI POST SECTION ----------------- -->
-    <section class="posts <?= $featured ? '' : 'section-extra-margin'?>"> <!-- //*if there is not featured post displayed in the index/main page -->
+    <section class="posts section-extra-margin"> <!-- //*if there is not featured post displayed in the index/main page -->
     <div class="container posts-container">
       <?php while($post = mysqli_fetch_assoc($posts)) : ?>
         <article class="post" >
